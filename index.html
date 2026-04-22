@@ -98,10 +98,18 @@
     /* ─── HERO ─────────────────────────────────────────────────────── */
     .hero {
       min-height: 100vh;
+      min-height: 100dvh;
       background: var(--navy);
       display: flex; align-items: center;
       position: relative; overflow: hidden;
       padding: 120px 40px 80px;
+    }
+    #hero-canvas {
+      position: absolute;
+      top: 0; left: 0;
+      pointer-events: none;
+      z-index: 0;
+      display: block;
     }
     .hero-bg {
       position: absolute; inset: 0;
@@ -942,6 +950,54 @@
       .support-fab { width: 56px; height: 56px; bottom: 14px; right: 14px; }
     }
 
+    /* ─── MOBILE GLOBAL ────────────────────────────────────────────── */
+    * { -webkit-tap-highlight-color: transparent; }
+    button, a { touch-action: manipulation; }
+
+    /* Safe area (notch / dynamic island) */
+    header {
+      padding-top: max(18px, env(safe-area-inset-top));
+      padding-left: max(40px, env(safe-area-inset-left));
+      padding-right: max(40px, env(safe-area-inset-right));
+    }
+    footer {
+      padding-bottom: max(32px, env(safe-area-inset-bottom));
+    }
+
+    @media (max-width: 768px) {
+      header {
+        padding-top: max(12px, env(safe-area-inset-top));
+        padding-left: max(16px, env(safe-area-inset-left));
+        padding-right: max(16px, env(safe-area-inset-right));
+      }
+      .support-fab {
+        bottom: max(20px, env(safe-area-inset-bottom));
+        right: max(16px, env(safe-area-inset-right));
+      }
+      .toast { right: max(16px, env(safe-area-inset-right)); left: max(16px, env(safe-area-inset-left)); }
+      .hero { padding-bottom: max(64px, env(safe-area-inset-bottom)); }
+      /* Formulário mais respirado */
+      .form-group { margin-bottom: 14px; }
+      .form-group input, .form-group select, .form-group textarea {
+        padding: 13px 14px;
+        font-size: 16px; /* evita zoom iOS */
+      }
+      .btn-submit { padding: 17px; font-size: 1rem; }
+      /* Checkout summary menor */
+      .order-item-info strong { font-size: .9rem; }
+      .order-total strong { font-size: 1.4rem; }
+      /* Steps com ícone menor */
+      .step-icon { width: 44px; height: 44px; font-size: 1.2rem; }
+      /* Planos */
+      .plan-price { font-size: 2rem; }
+    }
+
+    @media (max-width: 390px) {
+      .hero h1 { font-size: 1.65rem; }
+      .hero-stat strong { font-size: 1.4rem; }
+      .btn-primary, .btn-ghost { font-size: .95rem; padding: 14px 20px; }
+    }
+
     /* Acessibilidade: reduz movimento se preferido */
     @media (prefers-reduced-motion: reduce) {
       * { animation-duration: .01ms !important; transition-duration: .01ms !important; }
@@ -1070,6 +1126,7 @@
 <section class="hero" id="inicio">
   <div class="hero-bg"></div>
   <div class="hero-grid"></div>
+  <canvas id="hero-canvas"></canvas>
   <div class="hero-inner">
     <div class="hero-content">
       <div class="hero-badge">✅ Atestado 100% válido e aceito</div>
@@ -1808,6 +1865,65 @@
   const today = new Date().toISOString().split('T')[0];
   document.getElementById('f-data').min   = today;
   document.getElementById('f-data').value = today;
+
+  // ─── HERO WAVE CANVAS ─────────────────────────────────────────────
+  (function() {
+    var cv  = document.getElementById('hero-canvas');
+    if (!cv) return;
+    var cx  = cv.getContext('2d');
+    var W   = window.innerWidth;
+    var H   = window.innerHeight;
+    var mx  = 0.7,  my  = 0.5;
+    var smx = 0.7,  smy = 0.5;
+
+    cv.width  = W;
+    cv.height = H;
+
+    window.addEventListener('resize', function() {
+      W = cv.width  = window.innerWidth;
+      H = cv.height = window.innerHeight;
+    });
+
+    document.getElementById('inicio').addEventListener('mousemove', function(e) {
+      mx = e.clientX / W;
+      my = e.clientY / H;
+    });
+    document.getElementById('inicio').addEventListener('touchmove', function(e) {
+      mx = e.touches[0].clientX / W;
+      my = e.touches[0].clientY / H;
+    }, { passive: true });
+
+    function loop(t) {
+      requestAnimationFrame(loop);
+      smx += (mx - smx) * 0.05;
+      smy += (my - smy) * 0.05;
+      cx.clearRect(0, 0, W, H);
+
+      var N = W < 768 ? 22 : 44;
+      for (var i = 0; i < N; i++) {
+        var p   = i / (N - 1);
+        var b   = Math.sin(p * Math.PI);
+        var yc  = (smy - 0.27 + p * 0.54) * H;
+        var amp = b * (50 + smx * 80);
+
+        cx.beginPath();
+        for (var s = 0; s <= 80; s++) {
+          var xn = s / 80;
+          var y  = yc
+            + Math.sin(xn * Math.PI * 3.0 + t * 0.001  + p * 2.0) * amp
+            + Math.sin(xn * Math.PI * 6.5 + t * 0.0016 + p * 0.8) * b * 18
+            + Math.exp(-Math.pow(xn - smx, 2) / 0.05) * (smy - p) * 95;
+          if (s === 0) cx.moveTo(xn * W, y);
+          else         cx.lineTo(xn * W, y);
+        }
+        var a = (0.12 + 0.52 * b).toFixed(2);
+        cx.strokeStyle = 'rgba(0,212,188,' + a + ')';
+        cx.lineWidth   = W < 768 ? 1.2 : 1.6;
+        cx.stroke();
+      }
+    }
+    requestAnimationFrame(loop);
+  })();
 </script>
 
 <!-- ─── BOTÃO FLUTUANTE DE SUPORTE (WhatsApp) ──────────────────────── -->
