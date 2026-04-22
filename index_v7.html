@@ -1,0 +1,1791 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, viewport-fit=cover" />
+  <meta name="theme-color" content="#0a1f44" />
+  <title>Atestado Médico Online | Rápido, Seguro e 100% Digital</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,300&display=swap" rel="stylesheet" />
+  <style>
+    /* ─── RESET & BASE ─────────────────────────────────────────────── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --navy:   #0a1628;
+      --navy2:  #122040;
+      --teal:   #00b4a0;
+      --teal2:  #00d4bc;
+      --cream:  #f7f4ef;
+      --white:  #ffffff;
+      --gray:   #8492a6;
+      --gray2:  #dde3ec;
+      --green:  #22c55e;
+      --red:    #ef4444;
+      --gold:   #f0a500;
+      --ff-head: 'DM Serif Display', Georgia, serif;
+      --ff-body: 'DM Sans', system-ui, sans-serif;
+      --ease:   cubic-bezier(.22,.68,0,1.2);
+      --shadow: 0 20px 60px rgba(10,22,40,.18);
+      --r:      14px;
+    }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: var(--ff-body);
+      background: var(--cream);
+      color: var(--navy);
+      overflow-x: hidden;
+      line-height: 1.6;
+    }
+
+    /* ─── SCROLLBAR ────────────────────────────────────────────────── */
+    ::-webkit-scrollbar { width: 6px; }
+    ::-webkit-scrollbar-track { background: var(--cream); }
+    ::-webkit-scrollbar-thumb { background: var(--teal); border-radius: 99px; }
+
+    /* ─── HEADER ───────────────────────────────────────────────────── */
+    header {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      padding: 18px 40px;
+      display: flex; align-items: center; justify-content: space-between;
+      background: rgba(10,22,40,.92);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border-bottom: 1px solid rgba(255,255,255,.07);
+      transition: padding .3s;
+    }
+    .logo {
+      display: flex; align-items: center; gap: 12px;
+      text-decoration: none;
+    }
+    .logo-icon {
+      width: 38px; height: 38px;
+      background: var(--teal);
+      border-radius: 10px;
+      display: grid; place-items: center;
+      font-size: 18px;
+    }
+    .logo-text { color: var(--white); font-family: var(--ff-head); font-size: 1.15rem; }
+    .logo-text span { color: var(--teal2); }
+    nav { display: flex; align-items: center; gap: 32px; }
+    nav a {
+      color: rgba(255,255,255,.7);
+      text-decoration: none;
+      font-size: .9rem;
+      font-weight: 500;
+      transition: color .2s;
+    }
+    nav a:hover { color: var(--teal2); }
+    .btn-header {
+      background: var(--teal);
+      color: var(--white);
+      border: none; cursor: pointer;
+      padding: 10px 22px;
+      border-radius: 8px;
+      font-family: var(--ff-body);
+      font-size: .9rem; font-weight: 600;
+      transition: background .2s, transform .15s;
+      text-decoration: none;
+    }
+    .btn-header:hover { background: var(--teal2); transform: translateY(-1px); }
+    .hamburger { display: none; cursor: pointer; background: none; border: none; }
+    .hamburger span {
+      display: block; width: 22px; height: 2px;
+      background: var(--white); margin: 5px 0;
+      transition: .3s;
+    }
+
+    /* ─── HERO ─────────────────────────────────────────────────────── */
+    .hero {
+      min-height: 100vh;
+      background: var(--navy);
+      display: flex; align-items: center;
+      position: relative; overflow: hidden;
+      padding: 120px 40px 80px;
+    }
+    .hero-bg {
+      position: absolute; inset: 0;
+      background:
+        radial-gradient(ellipse 70% 60% at 70% 50%, rgba(0,180,160,.12) 0%, transparent 70%),
+        radial-gradient(ellipse 40% 40% at 10% 80%, rgba(0,180,160,.07) 0%, transparent 60%);
+      pointer-events: none;
+    }
+    .hero-grid {
+      position: absolute; inset: 0;
+      background-image: linear-gradient(rgba(0,180,160,.04) 1px, transparent 1px),
+                        linear-gradient(90deg, rgba(0,180,160,.04) 1px, transparent 1px);
+      background-size: 50px 50px;
+      pointer-events: none;
+    }
+    .hero-inner {
+      max-width: 1200px; margin: 0 auto; width: 100%;
+      display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center;
+      position: relative; z-index: 1;
+    }
+    .hero-badge {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: rgba(0,180,160,.15);
+      border: 1px solid rgba(0,180,160,.3);
+      color: var(--teal2);
+      padding: 6px 14px;
+      border-radius: 99px;
+      font-size: .8rem; font-weight: 500;
+      margin-bottom: 24px;
+      animation: fadeUp .6s var(--ease) both;
+    }
+    .hero-badge::before {
+      content: '';
+      width: 7px; height: 7px;
+      border-radius: 50%;
+      background: var(--teal2);
+      animation: pulse 1.5s ease infinite;
+    }
+    @keyframes pulse {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50% { opacity: .5; transform: scale(1.3); }
+    }
+    .hero h1 {
+      font-family: var(--ff-head);
+      font-size: clamp(2.4rem, 5vw, 3.6rem);
+      color: var(--white);
+      line-height: 1.12;
+      margin-bottom: 22px;
+      animation: fadeUp .7s .1s var(--ease) both;
+    }
+    .hero h1 em { color: var(--teal2); font-style: italic; }
+    .hero p {
+      color: rgba(255,255,255,.65);
+      font-size: 1.1rem;
+      max-width: 480px;
+      margin-bottom: 36px;
+      animation: fadeUp .7s .2s var(--ease) both;
+      font-weight: 300;
+    }
+    .hero-actions {
+      display: flex; gap: 14px; flex-wrap: wrap;
+      animation: fadeUp .7s .3s var(--ease) both;
+    }
+    .btn-primary {
+      background: var(--teal);
+      color: var(--white);
+      border: none; cursor: pointer;
+      padding: 15px 30px;
+      border-radius: 10px;
+      font-family: var(--ff-body);
+      font-size: 1rem; font-weight: 600;
+      transition: all .2s;
+      display: inline-flex; align-items: center; gap: 8px;
+      text-decoration: none;
+    }
+    .btn-primary:hover { background: var(--teal2); transform: translateY(-2px); box-shadow: 0 8px 30px rgba(0,180,160,.35); }
+    .btn-ghost {
+      background: transparent;
+      color: rgba(255,255,255,.8);
+      border: 1px solid rgba(255,255,255,.2);
+      cursor: pointer;
+      padding: 15px 28px;
+      border-radius: 10px;
+      font-family: var(--ff-body);
+      font-size: 1rem; font-weight: 500;
+      transition: all .2s;
+      text-decoration: none;
+    }
+    .btn-ghost:hover { border-color: var(--teal2); color: var(--teal2); }
+    .hero-stats {
+      display: flex; gap: 28px; margin-top: 40px;
+      animation: fadeUp .7s .4s var(--ease) both;
+    }
+    .hero-stat { }
+    .hero-stat strong {
+      display: block;
+      font-family: var(--ff-head);
+      font-size: 1.8rem; color: var(--teal2);
+    }
+    .hero-stat span { color: rgba(255,255,255,.5); font-size: .8rem; }
+    .hero-card-wrap {
+      display: flex; justify-content: center; align-items: center;
+      animation: fadeUp .8s .3s var(--ease) both;
+    }
+    .hero-card {
+      background: rgba(255,255,255,.06);
+      border: 1px solid rgba(255,255,255,.1);
+      border-radius: 20px;
+      padding: 32px;
+      backdrop-filter: blur(10px);
+      width: 100%; max-width: 400px;
+      box-shadow: 0 40px 80px rgba(0,0,0,.4);
+    }
+    .hero-card-title {
+      font-family: var(--ff-head);
+      color: var(--white); font-size: 1.2rem;
+      margin-bottom: 20px;
+      display: flex; align-items: center; gap: 10px;
+    }
+    .hero-card-title .icon { font-size: 1.4rem; }
+    .step-list { list-style: none; }
+    .step-list li {
+      display: flex; align-items: flex-start; gap: 14px;
+      padding: 14px 0;
+      border-bottom: 1px solid rgba(255,255,255,.06);
+    }
+    .step-list li:last-child { border-bottom: none; }
+    .step-num {
+      width: 28px; height: 28px;
+      border-radius: 8px;
+      background: var(--teal);
+      color: var(--white);
+      display: grid; place-items: center;
+      font-size: .75rem; font-weight: 700;
+      flex-shrink: 0;
+    }
+    .step-info strong { display: block; color: var(--white); font-size: .9rem; }
+    .step-info span { color: rgba(255,255,255,.5); font-size: .8rem; }
+    .hero-card-footer {
+      margin-top: 20px;
+      background: rgba(0,180,160,.12);
+      border: 1px solid rgba(0,180,160,.25);
+      border-radius: 10px;
+      padding: 12px 16px;
+      display: flex; align-items: center; gap: 10px;
+    }
+    .hero-card-footer span { color: rgba(255,255,255,.7); font-size: .82rem; }
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(24px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    /* ─── TRUST BAR ────────────────────────────────────────────────── */
+    .trust-bar {
+      background: var(--navy2);
+      border-top: 1px solid rgba(255,255,255,.06);
+      border-bottom: 1px solid rgba(255,255,255,.06);
+      padding: 20px 40px;
+    }
+    .trust-bar-inner {
+      max-width: 1200px; margin: 0 auto;
+      display: flex; align-items: center; justify-content: center;
+      gap: 48px; flex-wrap: wrap;
+    }
+    .trust-item {
+      display: flex; align-items: center; gap: 10px;
+      color: rgba(255,255,255,.55); font-size: .85rem;
+    }
+    .trust-item .ti { font-size: 1.1rem; }
+
+    /* ─── SECTION BASE ─────────────────────────────────────────────── */
+    section { padding: 100px 40px; }
+    .section-tag {
+      display: inline-block;
+      background: rgba(0,180,160,.1);
+      border: 1px solid rgba(0,180,160,.25);
+      color: var(--teal);
+      padding: 5px 14px;
+      border-radius: 99px;
+      font-size: .78rem; font-weight: 600;
+      letter-spacing: .06em; text-transform: uppercase;
+      margin-bottom: 14px;
+    }
+    .section-title {
+      font-family: var(--ff-head);
+      font-size: clamp(1.8rem, 4vw, 2.8rem);
+      line-height: 1.15;
+      margin-bottom: 14px;
+    }
+    .section-sub {
+      color: var(--gray);
+      font-size: 1.05rem;
+      font-weight: 300;
+      max-width: 520px;
+    }
+    .section-head { max-width: 1200px; margin: 0 auto 56px; text-align: center; }
+    .section-head .section-sub { margin: 0 auto; }
+
+    /* ─── HOW IT WORKS ─────────────────────────────────────────────── */
+    #como-funciona { background: var(--cream); }
+    .steps-grid {
+      max-width: 1200px; margin: 0 auto;
+      display: grid; grid-template-columns: repeat(4, 1fr); gap: 24px;
+    }
+    .step-card {
+      background: var(--white);
+      border: 1px solid var(--gray2);
+      border-radius: var(--r);
+      padding: 32px 24px;
+      position: relative;
+      transition: transform .25s, box-shadow .25s;
+    }
+    .step-card:hover { transform: translateY(-4px); box-shadow: var(--shadow); }
+    .step-card::after {
+      content: attr(data-n);
+      position: absolute; top: 20px; right: 20px;
+      font-family: var(--ff-head);
+      font-size: 3.5rem;
+      color: rgba(0,180,160,.08);
+      line-height: 1;
+    }
+    .step-icon {
+      width: 52px; height: 52px;
+      background: rgba(0,180,160,.1);
+      border-radius: 14px;
+      display: grid; place-items: center;
+      font-size: 1.5rem;
+      margin-bottom: 20px;
+    }
+    .step-card h3 {
+      font-family: var(--ff-head);
+      font-size: 1.15rem;
+      margin-bottom: 8px;
+    }
+    .step-card p { color: var(--gray); font-size: .9rem; line-height: 1.6; }
+
+    /* ─── PLANS ────────────────────────────────────────────────────── */
+    #planos { background: var(--navy); }
+    #planos .section-title { color: var(--white); }
+    #planos .section-sub { color: rgba(255,255,255,.5); }
+    #planos .section-tag { }
+    .plans-grid {
+      max-width: 1100px; margin: 0 auto;
+      display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px;
+    }
+    .plan-card {
+      background: rgba(255,255,255,.05);
+      border: 1px solid rgba(255,255,255,.1);
+      border-radius: 18px;
+      padding: 36px 28px;
+      transition: transform .25s, border-color .25s;
+    }
+    .plan-card:hover { transform: translateY(-4px); }
+    .plan-card.featured {
+      background: var(--teal);
+      border-color: var(--teal);
+      position: relative;
+    }
+    .plan-card.featured::before {
+      content: 'Mais Popular';
+      position: absolute; top: -12px; left: 50%; transform: translateX(-50%);
+      background: var(--gold);
+      color: var(--navy);
+      padding: 4px 14px;
+      border-radius: 99px;
+      font-size: .72rem; font-weight: 700;
+      letter-spacing: .05em; text-transform: uppercase;
+    }
+    .plan-name { color: rgba(255,255,255,.6); font-size: .85rem; font-weight: 500; letter-spacing: .05em; text-transform: uppercase; margin-bottom: 12px; }
+    .plan-card.featured .plan-name { color: rgba(255,255,255,.8); }
+    .plan-price {
+      font-family: var(--ff-head);
+      font-size: 2.6rem;
+      color: var(--white);
+      line-height: 1;
+      margin-bottom: 4px;
+    }
+    .plan-price sup { font-size: 1.2rem; vertical-align: super; }
+    .plan-period { color: rgba(255,255,255,.5); font-size: .85rem; margin-bottom: 28px; }
+    .plan-card.featured .plan-period { color: rgba(255,255,255,.75); }
+    .plan-features { list-style: none; margin-bottom: 32px; }
+    .plan-features li {
+      display: flex; align-items: center; gap: 10px;
+      color: rgba(255,255,255,.7);
+      font-size: .9rem;
+      padding: 7px 0;
+      border-bottom: 1px solid rgba(255,255,255,.06);
+    }
+    .plan-card.featured .plan-features li { color: rgba(255,255,255,.9); border-bottom-color: rgba(255,255,255,.15); }
+    .plan-features li:last-child { border-bottom: none; }
+    .plan-features li::before { content: '✓'; color: var(--teal2); font-weight: 700; flex-shrink: 0; }
+    .plan-card.featured .plan-features li::before { color: var(--white); }
+    .btn-plan {
+      width: 100%;
+      padding: 13px;
+      border-radius: 10px;
+      border: 1px solid rgba(255,255,255,.25);
+      background: transparent;
+      color: var(--white);
+      font-family: var(--ff-body);
+      font-size: .95rem; font-weight: 600;
+      cursor: pointer;
+      transition: all .2s;
+    }
+    .btn-plan:hover { background: rgba(255,255,255,.1); border-color: var(--teal2); }
+    .plan-card.featured .btn-plan {
+      background: var(--navy);
+      border-color: var(--navy);
+    }
+    .plan-card.featured .btn-plan:hover { background: var(--navy2); }
+
+    /* ─── CHECKOUT SECTION ─────────────────────────────────────────── */
+    #checkout { background: var(--cream); }
+    .checkout-wrap {
+      max-width: 900px; margin: 0 auto;
+      display: grid; grid-template-columns: 1fr 1.1fr; gap: 32px; align-items: start;
+    }
+    .order-summary {
+      background: var(--navy);
+      border-radius: 18px;
+      padding: 32px;
+      color: var(--white);
+      position: sticky; top: 100px;
+    }
+    .order-summary h3 { font-family: var(--ff-head); font-size: 1.3rem; margin-bottom: 24px; }
+    .order-item {
+      display: flex; justify-content: space-between; align-items: center;
+      padding: 14px 0;
+      border-bottom: 1px solid rgba(255,255,255,.08);
+    }
+    .order-item:last-of-type { border-bottom: none; }
+    .order-item-info strong { display: block; font-size: .95rem; }
+    .order-item-info span { color: rgba(255,255,255,.5); font-size: .8rem; }
+    .order-item-price { font-weight: 600; color: var(--teal2); }
+    .order-total {
+      margin-top: 20px;
+      padding-top: 20px;
+      border-top: 1px solid rgba(255,255,255,.15);
+      display: flex; justify-content: space-between; align-items: center;
+    }
+    .order-total span { color: rgba(255,255,255,.6); font-size: .9rem; }
+    .order-total strong { font-family: var(--ff-head); font-size: 1.6rem; color: var(--teal2); }
+    .secure-badge {
+      margin-top: 20px;
+      display: flex; align-items: center; gap: 8px;
+      color: rgba(255,255,255,.4); font-size: .78rem;
+      padding: 10px 14px;
+      background: rgba(255,255,255,.04);
+      border-radius: 8px;
+    }
+    .checkout-form {
+      background: var(--white);
+      border-radius: 18px;
+      padding: 32px;
+      box-shadow: 0 4px 30px rgba(10,22,40,.08);
+    }
+    .checkout-form h3 { font-family: var(--ff-head); font-size: 1.3rem; margin-bottom: 24px; }
+    .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+    .form-group { margin-bottom: 18px; }
+    .form-group label {
+      display: block;
+      font-size: .82rem; font-weight: 600;
+      color: var(--navy2);
+      margin-bottom: 6px;
+      letter-spacing: .02em;
+    }
+    .form-group input, .form-group select, .form-group textarea {
+      width: 100%; padding: 11px 14px;
+      border: 1.5px solid var(--gray2);
+      border-radius: 9px;
+      font-family: var(--ff-body);
+      font-size: .9rem;
+      color: var(--navy);
+      background: var(--white);
+      transition: border-color .2s, box-shadow .2s;
+      outline: none;
+    }
+    .form-group input:focus, .form-group select:focus, .form-group textarea:focus {
+      border-color: var(--teal);
+      box-shadow: 0 0 0 3px rgba(0,180,160,.12);
+    }
+    .form-group textarea { resize: vertical; min-height: 80px; }
+    .payment-tabs {
+      display: flex; gap: 0;
+      border: 1.5px solid var(--gray2);
+      border-radius: 10px;
+      overflow: hidden;
+      margin-bottom: 20px;
+    }
+    .pay-tab {
+      flex: 1; padding: 11px;
+      border: none; background: var(--white);
+      font-family: var(--ff-body);
+      font-size: .85rem; font-weight: 600;
+      cursor: pointer;
+      display: flex; align-items: center; justify-content: center; gap: 7px;
+      color: var(--gray);
+      transition: all .2s;
+      border-right: 1.5px solid var(--gray2);
+    }
+    .pay-tab:last-child { border-right: none; }
+    .pay-tab.active {
+      background: var(--teal);
+      color: var(--white);
+    }
+    .pay-panel { display: none; }
+    .pay-panel.active { display: block; }
+    .pix-box {
+      text-align: center;
+      padding: 24px;
+      background: #f0fdfb;
+      border: 1.5px solid rgba(0,180,160,.2);
+      border-radius: 12px;
+    }
+    .pix-icon { font-size: 2.5rem; margin-bottom: 10px; }
+    .pix-box p { color: var(--gray); font-size: .9rem; margin-bottom: 16px; }
+    .pix-box .loader-text { color: var(--teal); font-weight: 600; font-size: .9rem; }
+    .qr-placeholder {
+      width: 160px; height: 160px;
+      border: 2px dashed rgba(0,180,160,.3);
+      border-radius: 10px;
+      margin: 0 auto 14px;
+      display: grid; place-items: center;
+      color: rgba(0,180,160,.5);
+      font-size: .8rem;
+    }
+    .copy-code {
+      display: flex; gap: 8px; align-items: center;
+      background: var(--white);
+      border: 1.5px solid var(--gray2);
+      border-radius: 8px;
+      padding: 10px 12px;
+      margin-top: 12px;
+    }
+    .copy-code input {
+      flex: 1; border: none; outline: none;
+      font-size: .78rem; color: var(--gray);
+      font-family: monospace;
+      background: transparent;
+    }
+    .copy-code button {
+      background: var(--teal); color: var(--white);
+      border: none; border-radius: 6px;
+      padding: 5px 12px;
+      font-size: .75rem; font-weight: 600;
+      cursor: pointer;
+    }
+    .card-icons { display: flex; gap: 8px; margin-bottom: 16px; }
+    .card-icon {
+      padding: 5px 10px;
+      border: 1px solid var(--gray2);
+      border-radius: 6px;
+      font-size: .7rem; font-weight: 700;
+      color: var(--gray);
+    }
+    .btn-submit {
+      width: 100%;
+      padding: 15px;
+      border-radius: 11px;
+      border: none;
+      background: var(--teal);
+      color: var(--white);
+      font-family: var(--ff-body);
+      font-size: 1rem; font-weight: 700;
+      cursor: pointer;
+      transition: all .2s;
+      margin-top: 8px;
+      display: flex; align-items: center; justify-content: center; gap: 8px;
+    }
+    .btn-submit:hover { background: var(--teal2); transform: translateY(-2px); box-shadow: 0 8px 30px rgba(0,180,160,.3); }
+    .btn-submit:active { transform: scale(.99); }
+    .form-note { text-align: center; color: var(--gray); font-size: .78rem; margin-top: 12px; }
+
+    /* ─── SUCCESS STATE ─────────────────────────────────────────────── */
+    .success-screen {
+      display: none;
+      text-align: center;
+      padding: 32px;
+      background: var(--white);
+      border-radius: 18px;
+      box-shadow: 0 4px 30px rgba(10,22,40,.08);
+    }
+    .success-icon {
+      width: 72px; height: 72px;
+      border-radius: 50%;
+      background: rgba(34,197,94,.12);
+      display: grid; place-items: center;
+      font-size: 2.2rem;
+      margin: 0 auto 20px;
+      animation: pop .5s var(--ease);
+    }
+    @keyframes pop {
+      from { transform: scale(0); opacity: 0; }
+      to { transform: scale(1); opacity: 1; }
+    }
+    .success-screen h3 { font-family: var(--ff-head); font-size: 1.6rem; margin-bottom: 10px; }
+    .success-screen p { color: var(--gray); margin-bottom: 24px; }
+
+    /* ─── FAQ ──────────────────────────────────────────────────────── */
+    #faq { background: var(--white); }
+    .faq-wrap { max-width: 720px; margin: 0 auto; }
+    .faq-item {
+      border-bottom: 1px solid var(--gray2);
+      overflow: hidden;
+    }
+    .faq-q {
+      width: 100%; padding: 20px 0;
+      display: flex; align-items: center; justify-content: space-between;
+      background: none; border: none;
+      font-family: var(--ff-body);
+      font-size: 1rem; font-weight: 600;
+      color: var(--navy);
+      cursor: pointer; text-align: left;
+      gap: 16px;
+    }
+    .faq-q .chevron {
+      width: 28px; height: 28px; flex-shrink: 0;
+      border-radius: 50%;
+      background: var(--gray2);
+      display: grid; place-items: center;
+      font-size: .7rem;
+      transition: transform .3s, background .2s;
+    }
+    .faq-item.open .faq-q .chevron { transform: rotate(180deg); background: var(--teal); color: var(--white); }
+    .faq-a {
+      max-height: 0; overflow: hidden;
+      transition: max-height .35s ease, padding .35s;
+      color: var(--gray); font-size: .93rem; line-height: 1.7;
+    }
+    .faq-item.open .faq-a { max-height: 300px; padding-bottom: 18px; }
+
+    /* ─── FOOTER ───────────────────────────────────────────────────── */
+    footer {
+      background: var(--navy);
+      color: rgba(255,255,255,.5);
+      padding: 60px 40px 32px;
+    }
+    .footer-inner {
+      max-width: 1200px; margin: 0 auto;
+      display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 48px;
+      padding-bottom: 48px;
+      border-bottom: 1px solid rgba(255,255,255,.07);
+    }
+    .footer-brand p { font-size: .85rem; margin-top: 14px; line-height: 1.7; max-width: 280px; }
+    .footer-col h4 { color: var(--white); font-size: .88rem; font-weight: 600; margin-bottom: 16px; letter-spacing: .03em; }
+    .footer-col a {
+      display: block; color: rgba(255,255,255,.45);
+      text-decoration: none; font-size: .85rem;
+      margin-bottom: 10px; transition: color .2s;
+    }
+    .footer-col a:hover { color: var(--teal2); }
+    .footer-bottom {
+      max-width: 1200px; margin: 28px auto 0;
+      display: flex; align-items: center; justify-content: space-between;
+      font-size: .8rem; gap: 16px; flex-wrap: wrap;
+    }
+    .footer-bottom a { color: rgba(255,255,255,.35); text-decoration: none; }
+    .footer-bottom a:hover { color: var(--teal2); }
+
+    /* ─── MODAL ────────────────────────────────────────────────────── */
+    .modal-overlay {
+      display: none;
+      position: fixed; inset: 0; z-index: 200;
+      background: rgba(10,22,40,.7);
+      backdrop-filter: blur(4px);
+      -webkit-backdrop-filter: blur(4px);
+      align-items: center; justify-content: center;
+    }
+    .modal-overlay.show { display: flex; }
+    .modal {
+      background: var(--white);
+      border-radius: 20px;
+      padding: 36px;
+      max-width: 480px; width: calc(100% - 40px);
+      position: relative;
+      animation: fadeUp .35s var(--ease);
+    }
+    .modal-close {
+      position: absolute; top: 16px; right: 16px;
+      background: var(--gray2); border: none;
+      width: 32px; height: 32px;
+      border-radius: 50%;
+      font-size: 1rem; cursor: pointer;
+      display: grid; place-items: center;
+      transition: background .2s;
+    }
+    .modal-close:hover { background: var(--gray); color: var(--white); }
+    .modal h3 { font-family: var(--ff-head); font-size: 1.4rem; margin-bottom: 8px; }
+    .modal p { color: var(--gray); font-size: .9rem; margin-bottom: 24px; }
+
+    /* ─── TOAST ────────────────────────────────────────────────────── */
+    .toast {
+      position: fixed; bottom: 24px; right: 24px; z-index: 300;
+      background: var(--navy);
+      color: var(--white);
+      padding: 14px 20px;
+      border-radius: 10px;
+      font-size: .88rem; font-weight: 500;
+      display: flex; align-items: center; gap: 10px;
+      transform: translateY(100px);
+      opacity: 0;
+      transition: all .35s var(--ease);
+      box-shadow: 0 8px 30px rgba(0,0,0,.25);
+    }
+    .toast.show { transform: translateY(0); opacity: 1; }
+    .toast.success .t-icon { color: var(--green); }
+    .toast.error .t-icon { color: var(--red); }
+
+    /* ─── LOADING SPINNER ──────────────────────────────────────────── */
+    .spin {
+      width: 18px; height: 18px;
+      border: 2px solid rgba(255,255,255,.3);
+      border-top-color: var(--white);
+      border-radius: 50%;
+      animation: spin .7s linear infinite;
+      display: none;
+    }
+    @keyframes spin { to { transform: rotate(360deg); } }
+
+    /* ═══════════════════════════════════════════════════════════════════
+       ✨ PREMIUM POLISH v7 — gradientes suaves, sombras refinadas,
+       melhor experiência mobile. Sobrescreve apenas estilos visuais.
+       ═══════════════════════════════════════════════════════════════════ */
+    :root {
+      --shadow-soft:   0 4px 16px rgba(10,22,40,.06), 0 12px 40px rgba(10,22,40,.08);
+      --shadow-elev:   0 8px 24px rgba(10,22,40,.10), 0 24px 60px rgba(10,22,40,.14);
+      --grad-teal:     linear-gradient(135deg, #00b4a0 0%, #00d4bc 100%);
+      --grad-navy:     linear-gradient(160deg, #0a1628 0%, #122040 60%, #1a2d5a 100%);
+      --grad-cream:    linear-gradient(180deg, #f7f4ef 0%, #ffffff 100%);
+    }
+
+    body { background: var(--grad-cream); }
+
+    /* Hero: gradiente mais profundo + brilhos */
+    .hero { background: var(--grad-navy); }
+    .hero-bg {
+      background:
+        radial-gradient(ellipse 60% 50% at 75% 40%, rgba(0,212,188,.18) 0%, transparent 65%),
+        radial-gradient(ellipse 50% 50% at 15% 85%, rgba(0,180,160,.12) 0%, transparent 65%),
+        radial-gradient(ellipse 80% 30% at 50% 0%, rgba(26,45,90,.6) 0%, transparent 70%);
+    }
+
+    /* Botões principais com gradiente e elevação */
+    .btn-primary,
+    .btn-submit,
+    .btn-header {
+      background: var(--grad-teal);
+      box-shadow: 0 6px 20px rgba(0,180,160,.28);
+      letter-spacing: .01em;
+    }
+    .btn-primary:hover,
+    .btn-submit:hover,
+    .btn-header:hover {
+      background: var(--grad-teal);
+      filter: brightness(1.08);
+      box-shadow: 0 12px 32px rgba(0,180,160,.42);
+      transform: translateY(-2px);
+    }
+
+    /* Cards com sombra refinada */
+    .checkout-form,
+    .success-screen { box-shadow: var(--shadow-soft); }
+    .checkout-form:hover { box-shadow: var(--shadow-elev); }
+
+    .plan-card {
+      background: rgba(255,255,255,.04);
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+      transition: transform .3s var(--ease), box-shadow .3s, border-color .3s;
+    }
+    .plan-card:hover {
+      transform: translateY(-6px);
+      border-color: rgba(0,212,188,.35);
+      box-shadow: 0 18px 50px rgba(0,180,160,.18);
+    }
+    .plan-card.featured {
+      background: var(--grad-teal);
+      box-shadow: 0 20px 60px rgba(0,180,160,.45);
+      transform: translateY(-4px);
+    }
+    .plan-card.featured:hover { transform: translateY(-10px); }
+
+    /* Order summary com gradiente */
+    .order-summary {
+      background: var(--grad-navy);
+      box-shadow: var(--shadow-elev);
+    }
+
+    /* PIX box mais elegante */
+    .pix-box {
+      background: linear-gradient(180deg, #f0fdfb 0%, #ffffff 100%);
+      box-shadow: inset 0 0 0 1px rgba(0,180,160,.15);
+    }
+
+    /* Inputs mais suaves */
+    .form-group input,
+    .form-group select,
+    .form-group textarea {
+      background: #fafbfc;
+      border-color: #e5e9f0;
+      transition: all .25s ease;
+    }
+    .form-group input:hover,
+    .form-group select:hover,
+    .form-group textarea:hover { background: #fff; border-color: #c8d0dc; }
+    .form-group input:focus,
+    .form-group select:focus,
+    .form-group textarea:focus {
+      background: #fff;
+      box-shadow: 0 0 0 4px rgba(0,180,160,.14);
+    }
+
+    /* FAQ items com hover */
+    .faq-q { transition: color .2s; padding-right: 8px; }
+    .faq-q:hover { color: var(--teal); }
+
+    /* Modal mais polido */
+    .modal {
+      box-shadow: 0 30px 80px rgba(10,22,40,.35);
+      border: 1px solid rgba(255,255,255,.6);
+    }
+    .modal-overlay { background: rgba(10,22,40,.55); }
+
+    /* Support FAB com glow */
+    .support-fab { box-shadow: 0 10px 30px rgba(37,211,102,.45); }
+
+    /* ─── 📱 MELHORIAS MOBILE ────────────────────────────────────────── */
+    @media (max-width: 768px) {
+      section { padding: 64px 20px; }
+      .section-head { margin-bottom: 40px; }
+      .section-head h2 { font-size: 1.85rem; line-height: 1.2; }
+      .section-sub { font-size: .95rem; }
+
+      .hero { padding: 110px 20px 64px; min-height: auto; }
+      .hero-inner { gap: 32px; }
+      .hero h1 { font-size: 2.15rem; line-height: 1.18; }
+      .hero p { font-size: 1.02rem; max-width: 100%; }
+      .hero-actions { flex-direction: column; gap: 12px; }
+      .hero-actions .btn-primary,
+      .hero-actions .btn-ghost {
+        width: 100%; justify-content: center;
+        padding: 16px 24px; font-size: 1rem;
+      }
+      .hero-stats {
+        gap: 20px; padding-top: 28px; margin-top: 28px;
+        border-top: 1px solid rgba(255,255,255,.08);
+      }
+
+      /* Botões maiores e mais clicáveis */
+      .btn-primary, .btn-submit, .btn-plan, .btn-ghost {
+        min-height: 52px;
+        border-radius: 12px;
+      }
+
+      /* Planos com mais respiro */
+      .plan-card { padding: 32px 24px; border-radius: 20px; }
+      .plan-card.featured { transform: none; }
+      .plan-card.featured:hover { transform: translateY(-4px); }
+
+      /* Checkout */
+      .order-summary,
+      .checkout-form,
+      .success-screen {
+        padding: 24px 20px;
+        border-radius: 18px;
+      }
+      .order-summary h3,
+      .checkout-form h3 { font-size: 1.2rem; margin-bottom: 18px; }
+
+      /* FAQ mais clicável */
+      .faq-q { padding: 22px 0; font-size: 1rem; min-height: 56px; }
+      .faq-q .chevron { width: 32px; height: 32px; }
+
+      /* Modal ocupa quase tudo */
+      .modal {
+        padding: 28px 22px;
+        border-radius: 22px 22px 16px 16px;
+        width: calc(100% - 24px);
+        max-height: 92vh; overflow-y: auto;
+      }
+
+      /* Header mais compacto */
+      header { padding: 12px 16px; }
+      .logo-text { font-size: 1.05rem; }
+      .logo-icon { width: 34px; height: 34px; }
+
+      /* Toast no topo no mobile (longe do FAB) */
+      .toast {
+        bottom: auto; top: 16px;
+        left: 16px; right: 16px;
+        transform: translateY(-100px);
+      }
+      .toast.show { transform: translateY(0); }
+
+      /* PIX QR maior */
+      .qr-placeholder { width: 200px; height: 200px; }
+      #pix-code { font-size: 13px !important; }
+    }
+
+    @media (max-width: 480px) {
+      .hero h1 { font-size: 1.85rem; }
+      .hero p { font-size: .98rem; }
+      .section-head h2 { font-size: 1.55rem; }
+      .plan-price { font-size: 2.2rem; }
+      .order-total strong { font-size: 1.35rem; }
+      .support-fab { width: 56px; height: 56px; bottom: 14px; right: 14px; }
+    }
+
+    /* Acessibilidade: reduz movimento se preferido */
+    @media (prefers-reduced-motion: reduce) {
+      * { animation-duration: .01ms !important; transition-duration: .01ms !important; }
+    }
+
+    /* ─── RESPONSIVE ────────────────────────────────────────────────── */
+    @media (max-width: 1024px) {
+      .steps-grid { grid-template-columns: repeat(2, 1fr); }
+      .plans-grid { grid-template-columns: 1fr; max-width: 420px; }
+      .footer-inner { grid-template-columns: 1fr 1fr; }
+    }
+    @media (max-width: 768px) {
+      header { padding: 14px 20px; }
+      nav { display: none; position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: var(--navy); flex-direction: column; justify-content: center; gap: 24px; }
+      nav.open { display: flex; }
+      nav a { font-size: 1.2rem; padding: 12px 20px; }
+      .hamburger { display: block; z-index: 101; min-width: 44px; min-height: 44px; }
+      .hero { padding: 100px 16px 50px; }
+      .hero-inner { grid-template-columns: 1fr; gap: 40px; }
+      .hero-card-wrap { display: none; }
+      .hero h1 { font-size: 2rem; line-height: 1.2; }
+      .hero p { font-size: 1rem; }
+      section { padding: 56px 16px; }
+      .section-head { margin-bottom: 36px; }
+      .section-head h2 { font-size: 1.6rem; }
+      .checkout-wrap { grid-template-columns: 1fr; gap: 24px; }
+      .order-summary { position: static; }
+      .form-row { grid-template-columns: 1fr; }
+      .steps-grid { grid-template-columns: 1fr; gap: 20px; }
+      .plans-grid { grid-template-columns: 1fr; gap: 16px; }
+      footer { padding: 48px 16px 24px; }
+      .footer-inner { grid-template-columns: 1fr; gap: 32px; text-align: center; }
+      .footer-brand p { margin-left: auto; margin-right: auto; }
+      .trust-bar { padding: 14px 16px; }
+      .trust-bar-inner { gap: 16px; justify-content: flex-start; flex-wrap: wrap; }
+      input, select, textarea, button { font-size: 16px !important; } /* evita zoom no iOS */
+      .btn, button[type="submit"] { min-height: 48px; }
+      .faq-wrap { padding: 0 4px; }
+    }
+    @media (max-width: 480px) {
+      .hero h1 { font-size: 1.7rem; }
+      .section-head h2 { font-size: 1.4rem; }
+      #pix-code { font-size: 13px !important; word-break: break-all; }
+    }
+
+    /* ===== Botão flutuante de suporte (WhatsApp) ===== */
+    .support-fab {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+      background: #25D366;
+      color: #fff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 6px 20px rgba(37,211,102,0.45), 0 2px 6px rgba(0,0,0,0.15);
+      cursor: pointer;
+      z-index: 999;
+      text-decoration: none;
+      transition: transform .2s ease, box-shadow .2s ease;
+      animation: fab-pulse 2.5s infinite;
+    }
+    .support-fab:hover { transform: scale(1.08); box-shadow: 0 8px 26px rgba(37,211,102,0.55); }
+    .support-fab svg { width: 32px; height: 32px; fill: #fff; }
+    .support-fab .support-tooltip {
+      position: absolute;
+      right: 72px;
+      top: 50%;
+      transform: translateY(-50%);
+      background: #0a1f44;
+      color: #fff;
+      padding: 8px 14px;
+      border-radius: 8px;
+      font-size: 0.85rem;
+      white-space: nowrap;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity .2s ease;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+    }
+    .support-fab .support-tooltip::after {
+      content: '';
+      position: absolute;
+      right: -6px;
+      top: 50%;
+      transform: translateY(-50%);
+      border: 6px solid transparent;
+      border-left-color: #0a1f44;
+    }
+    .support-fab:hover .support-tooltip { opacity: 1; }
+    @keyframes fab-pulse {
+      0%, 100% { box-shadow: 0 6px 20px rgba(37,211,102,0.45), 0 0 0 0 rgba(37,211,102,0.5); }
+      50%      { box-shadow: 0 6px 20px rgba(37,211,102,0.45), 0 0 0 14px rgba(37,211,102,0); }
+    }
+    @media (max-width: 480px) {
+      .support-fab { width: 56px; height: 56px; bottom: 16px; right: 16px; }
+      .support-fab svg { width: 28px; height: 28px; }
+      .support-fab .support-tooltip { display: none; }
+    }
+  </style>
+  <script src="https://cdn.jsdelivr.net/npm/qrcode@1.5.3/build/qrcode.min.js"></script>
+</head>
+<body>
+
+<!-- ─── HEADER ──────────────────────────────────────────────────────── -->
+<header id="header">
+  <a href="#" class="logo">
+    <div class="logo-icon">🩺</div>
+    <span class="logo-text">Atestado<span>Médico</span></span>
+  </a>
+  <nav id="nav">
+    <a href="#como-funciona">Como Funciona</a>
+    <a href="#planos">Planos</a>
+    <a href="#faq">FAQ</a>
+    <a href="#checkout" class="btn-header">Emitir Agora</a>
+  </nav>
+  <button class="hamburger" id="hamburger" aria-label="Menu">
+    <span></span><span></span><span></span>
+  </button>
+</header>
+
+<!-- ─── HERO ────────────────────────────────────────────────────────── -->
+<section class="hero" id="inicio">
+  <div class="hero-bg"></div>
+  <div class="hero-grid"></div>
+  <div class="hero-inner">
+    <div class="hero-content">
+      <div class="hero-badge">✅ Atestado 100% válido e aceito</div>
+      <h1>Atestado Médico Online em <em>menos de 10 minutos</em></h1>
+      <p>Consulta online com médico CRM ativo. Atestado digital com validade jurídica, aceito em empresas, escolas e órgãos públicos.</p>
+      <div class="hero-actions">
+        <a href="#checkout" class="btn-primary">🩺 Emitir meu atestado <span>→</span></a>
+        <a href="#como-funciona" class="btn-ghost">Como funciona?</a>
+      </div>
+      <div class="hero-stats">
+        <div class="hero-stat">
+          <strong>+50k</strong>
+          <span>atestados emitidos</span>
+        </div>
+        <div class="hero-stat">
+          <strong>4.9★</strong>
+          <span>avaliação média</span>
+        </div>
+        <div class="hero-stat">
+          <strong>10min</strong>
+          <span>tempo médio</span>
+        </div>
+      </div>
+    </div>
+    <div class="hero-card-wrap">
+      <div class="hero-card">
+        <div class="hero-card-title"><span class="icon">📋</span> Como funciona</div>
+        <ul class="step-list">
+          <li>
+            <div class="step-num">1</div>
+            <div class="step-info">
+              <strong>Preencha o formulário</strong>
+              <span>Informe seus dados e sintomas</span>
+            </div>
+          </li>
+          <li>
+            <div class="step-num">2</div>
+            <div class="step-info">
+              <strong>Realize o pagamento</strong>
+              <span>PIX ou cartão — rápido e seguro</span>
+            </div>
+          </li>
+          <li>
+            <div class="step-num">3</div>
+            <div class="step-info">
+              <strong>Consulta com médico</strong>
+              <span>Atendimento online imediato</span>
+            </div>
+          </li>
+          <li>
+            <div class="step-num">4</div>
+            <div class="step-info">
+              <strong>Receba o atestado</strong>
+              <span>PDF assinado no seu e-mail</span>
+            </div>
+          </li>
+        </ul>
+        <div class="hero-card-footer">
+          <span>🔒</span>
+          <span>Dados protegidos · LGPD Compliant · CFM aprovado</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── TRUST BAR ────────────────────────────────────────────────────── -->
+<div class="trust-bar">
+  <div class="trust-bar-inner">
+    <div class="trust-item"><span class="ti">🔒</span> SSL 256-bit</div>
+    <div class="trust-item"><span class="ti">✅</span> CFM regulamentado</div>
+    <div class="trust-item"><span class="ti">📜</span> Validade jurídica</div>
+    <div class="trust-item"><span class="ti">⚡</span> Entrega imediata</div>
+    <div class="trust-item"><span class="ti">📱</span> LGPD Compliant</div>
+    <div class="trust-item"><span class="ti">💳</span> Anubis Pay</div>
+  </div>
+</div>
+
+<!-- ─── HOW IT WORKS ────────────────────────────────────────────────── -->
+<section id="como-funciona">
+  <div class="section-head">
+    <div class="section-tag">Como Funciona</div>
+    <h2 class="section-title">Simples, rápido e 100% online</h2>
+    <p class="section-sub">Processo totalmente digital. Sem filas, sem esperas, sem sair de casa.</p>
+  </div>
+  <div class="steps-grid">
+    <div class="step-card" data-n="01">
+      <div class="step-icon">📝</div>
+      <h3>Preencha seus dados</h3>
+      <p>Informe nome, CPF, sintomas e quantos dias de afastamento você precisa. Leva menos de 2 minutos.</p>
+    </div>
+    <div class="step-card" data-n="02">
+      <div class="step-icon">💳</div>
+      <h3>Pagamento seguro</h3>
+      <p>Pague via PIX (aprovação instantânea) ou cartão de crédito. Processamento seguro pela Anubis Pay.</p>
+    </div>
+    <div class="step-card" data-n="03">
+      <div class="step-icon">👨‍⚕️</div>
+      <h3>Consulta médica online</h3>
+      <p>Um médico com CRM ativo analisa seu caso e emite o atestado com assinatura digital válida.</p>
+    </div>
+    <div class="step-card" data-n="04">
+      <div class="step-icon">📧</div>
+      <h3>Receba por e-mail</h3>
+      <p>Atestado em PDF no seu e-mail em até 10 minutos. Com código de verificação de autenticidade.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ─── PLANS ────────────────────────────────────────────────────────── -->
+<section id="planos">
+  <div class="section-head">
+    <div class="section-tag">Planos</div>
+    <h2 class="section-title" style="color:var(--white)">Escolha o atestado ideal</h2>
+    <p class="section-sub">Selecione conforme sua necessidade. Pagamento único, sem surpresas.</p>
+  </div>
+  <div class="plans-grid">
+    <div class="plan-card">
+      <div class="plan-name">Básico</div>
+      <div class="plan-price"><sup>R$</sup>49</div>
+      <div class="plan-period">pagamento único</div>
+      <ul class="plan-features">
+        <li>Atestado de 1 a 3 dias</li>
+        <li>Assinatura digital CFM</li>
+        <li>Entrega em até 30 min</li>
+        <li>PDF para download</li>
+      </ul>
+      <button class="btn-plan" onclick="selectPlan('Básico', 49)">Selecionar plano</button>
+    </div>
+    <div class="plan-card featured">
+      <div class="plan-name">Padrão</div>
+      <div class="plan-price"><sup>R$</sup>79</div>
+      <div class="plan-period">pagamento único</div>
+      <ul class="plan-features">
+        <li>Atestado de 1 a 7 dias</li>
+        <li>Assinatura digital CFM</li>
+        <li>Entrega em até 10 min</li>
+        <li>PDF + código verificação</li>
+        <li>Suporte prioritário</li>
+      </ul>
+      <button class="btn-plan" onclick="selectPlan('Padrão', 79)">Selecionar plano</button>
+    </div>
+    <div class="plan-card">
+      <div class="plan-name">Premium</div>
+      <div class="plan-price"><sup>R$</sup>119</div>
+      <div class="plan-period">pagamento único</div>
+      <ul class="plan-features">
+        <li>Atestado de 1 a 15 dias</li>
+        <li>Assinatura digital CFM</li>
+        <li>Entrega imediata</li>
+        <li>PDF + laudos adicionais</li>
+        <li>Suporte 24h via WhatsApp</li>
+        <li>Revisão gratuita</li>
+      </ul>
+      <button class="btn-plan" onclick="selectPlan('Premium', 119)">Selecionar plano</button>
+    </div>
+  </div>
+</section>
+
+<!-- ─── CHECKOUT ─────────────────────────────────────────────────────── -->
+<section id="checkout">
+  <div class="section-head">
+    <div class="section-tag">Pedido</div>
+    <h2 class="section-title">Emita seu atestado agora</h2>
+    <p class="section-sub">Preencha os dados abaixo e realize o pagamento para iniciar.</p>
+  </div>
+  <div class="checkout-wrap">
+
+    <!-- ORDER SUMMARY -->
+    <div class="order-summary">
+      <h3>📋 Resumo do pedido</h3>
+      <div class="order-item">
+        <div class="order-item-info">
+          <strong id="plan-name-display">Atestado Padrão</strong>
+          <span>Atestado médico digital</span>
+        </div>
+        <div class="order-item-price" id="plan-price-display">R$ 79</div>
+      </div>
+      <div class="order-item">
+        <div class="order-item-info">
+          <strong>Assinatura digital CFM</strong>
+          <span>Incluída</span>
+        </div>
+        <div class="order-item-price" style="color:var(--green)">Grátis</div>
+      </div>
+      <div class="order-item">
+        <div class="order-item-info">
+          <strong>Entrega por e-mail</strong>
+          <span>Incluída</span>
+        </div>
+        <div class="order-item-price" style="color:var(--green)">Grátis</div>
+      </div>
+      <div class="order-total">
+        <span>Total</span>
+        <strong id="plan-total-display">R$ 79</strong>
+      </div>
+      <div class="secure-badge">🔒 Pagamento 100% seguro — Anubis Pay</div>
+    </div>
+
+    <!-- CHECKOUT FORM -->
+    <div class="checkout-form" id="checkout-form">
+      <h3>Seus dados</h3>
+      <div class="form-row">
+        <div class="form-group">
+          <label>Nome completo *</label>
+          <input type="text" id="f-nome" placeholder="João Silva" />
+        </div>
+        <div class="form-group">
+          <label>CPF *</label>
+          <input type="text" id="f-cpf" placeholder="000.000.000-00" maxlength="14" />
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="form-group">
+          <label>E-mail *</label>
+          <input type="email" id="f-email" placeholder="seu@email.com" />
+        </div>
+        <div class="form-group">
+          <label>Telefone *</label>
+          <input type="text" id="f-telefone" placeholder="(11) 99999-9999" maxlength="15" />
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="form-group">
+          <label>Dias de afastamento *</label>
+          <select id="f-dias">
+            <option value="">Selecione</option>
+            <option value="1">1 dia</option>
+            <option value="2">2 dias</option>
+            <option value="3">3 dias</option>
+            <option value="5">5 dias</option>
+            <option value="7">7 dias</option>
+            <option value="10">10 dias</option>
+            <option value="15">15 dias</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label>Data de início *</label>
+          <input type="date" id="f-data" />
+        </div>
+      </div>
+      <div class="form-group">
+        <label>Descreva seus sintomas *</label>
+        <textarea id="f-sintomas" placeholder="Ex: Dor de cabeça forte, febre 38°C, corpo dolorido desde ontem..."></textarea>
+      </div>
+
+      <h3 style="margin-top:8px">Pagamento via PIX</h3>
+
+      <!-- PIX PANEL -->
+      <div class="pay-panel active" id="panel-pix">
+        <div class="pix-box" id="pix-box-idle">
+          <div class="pix-icon">⚡</div>
+          <p>Ao clicar em "Gerar PIX", um QR Code será gerado automaticamente via <strong>Anubis Pay</strong>. O pagamento é confirmado em segundos.</p>
+        </div>
+        <div class="pix-box" id="pix-box-qr" style="display:none">
+          <div class="pix-icon">📱</div>
+          <div class="qr-placeholder" id="qr-img">QR Code aqui</div>
+          <p>Escaneie o QR Code com o app do seu banco ou use o código abaixo:</p>
+          <div class="copy-code">
+            <input type="text" id="pix-code" readonly value="00020126580014br.gov.bcb.pix..." />
+            <button onclick="copyPix()">Copiar</button>
+          </div>
+          <p class="loader-text" id="pix-status" style="margin-top:12px">⏳ Aguardando pagamento...</p>
+        </div>
+      </div>
+      </div>
+
+      <button class="btn-submit" id="btn-submit" onclick="handleCheckout()">
+        <span id="btn-text">🔒 Finalizar Pedido</span>
+        <div class="spin" id="btn-spin"></div>
+      </button>
+      <p class="form-note">🔒 Seus dados são criptografados e protegidos pela LGPD.</p>
+    </div>
+
+    <!-- SUCCESS SCREEN -->
+    <div class="success-screen" id="success-screen">
+      <div class="success-icon">✅</div>
+      <h3>Pedido confirmado!</h3>
+      <p>Pagamento aprovado! Seu atestado será enviado para <strong id="success-email"></strong> em até 10 minutos.</p>
+      <button class="btn-primary" style="margin:0 auto" onclick="resetForm()">Novo pedido</button>
+    </div>
+
+  </div>
+</section>
+
+<!-- ─── FAQ ──────────────────────────────────────────────────────────── -->
+<section id="faq">
+  <div class="section-head">
+    <div class="section-tag">Dúvidas</div>
+    <h2 class="section-title">Perguntas frequentes</h2>
+    <p class="section-sub">Tire todas as suas dúvidas antes de emitir.</p>
+  </div>
+  <div class="faq-wrap">
+    <div class="faq-item">
+      <button class="faq-q" onclick="toggleFaq(this)">
+        O atestado é válido? <span class="chevron">▼</span>
+      </button>
+      <div class="faq-a">Sim! Todos os atestados são emitidos por médicos com CRM ativo, com assinatura digital certificada. São aceitos em empresas, escolas e órgãos públicos em todo o Brasil.</div>
+    </div>
+    <div class="faq-item">
+      <button class="faq-q" onclick="toggleFaq(this)">
+        Quanto tempo leva para receber? <span class="chevron">▼</span>
+      </button>
+      <div class="faq-a">Após confirmação do pagamento, o atestado é enviado em até 10 minutos por e-mail. No plano Premium a entrega é imediata.</div>
+    </div>
+    <div class="faq-item">
+      <button class="faq-q" onclick="toggleFaq(this)">
+        Quais formas de pagamento são aceitas? <span class="chevron">▼</span>
+      </button>
+      <div class="faq-a">Aceitamos pagamento via PIX (confirmação instantânea), processado com segurança pela Anubis Pay.</div>
+    </div>
+    <div class="faq-item">
+      <button class="faq-q" onclick="toggleFaq(this)">
+        Preciso enviar exames ou documentos? <span class="chevron">▼</span>
+      </button>
+      <div class="faq-a">Não. Basta descrever seus sintomas no formulário. O médico analisa seu caso e emite o atestado conforme as informações fornecidas.</div>
+    </div>
+    <div class="faq-item">
+      <button class="faq-q" onclick="toggleFaq(this)">
+        Meus dados são protegidos? <span class="chevron">▼</span>
+      </button>
+      <div class="faq-a">Sim. Utilizamos criptografia SSL 256-bit e seguimos rigorosamente a Lei Geral de Proteção de Dados (LGPD). Suas informações jamais são compartilhadas com terceiros.</div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── FOOTER ───────────────────────────────────────────────────────── -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-brand">
+      <a href="#" class="logo">
+        <div class="logo-icon">🩺</div>
+        <span class="logo-text">Atestado<span>Médico</span></span>
+      </a>
+      <p>Atestados médicos online com validade jurídica. Rápido, seguro e 100% digital.</p>
+    </div>
+    <div class="footer-col">
+      <h4>Serviços</h4>
+      <a href="#">Atestado Básico</a>
+      <a href="#">Atestado Padrão</a>
+      <a href="#">Atestado Premium</a>
+    </div>
+    <div class="footer-col">
+      <h4>Suporte</h4>
+      <a href="#">Central de Ajuda</a>
+      <a href="#">Verificar Atestado</a>
+      <a href="#">Contato</a>
+    </div>
+    <div class="footer-col">
+      <h4>Legal</h4>
+      <a href="#">Termos de Uso</a>
+      <a href="#">Privacidade (LGPD)</a>
+      <a href="#">Política de Reembolso</a>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>© 2025 AtestadomEdico.org — Todos os direitos reservados</span>
+    <span>Pagamentos por <strong style="color:var(--teal2)">Anubis Pay</strong> · CNPJ: 00.000.000/0001-00</span>
+  </div>
+</footer>
+
+<!-- ─── TOAST ────────────────────────────────────────────────────────── -->
+<div class="toast" id="toast">
+  <span class="t-icon" id="toast-icon">✅</span>
+  <span id="toast-msg">Mensagem aqui</span>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════════════════
+     JAVASCRIPT — Anubis Pay Integration
+     ═══════════════════════════════════════════════════════════════════
+     CONFIGURAÇÃO: Substitua as constantes abaixo com suas credenciais.
+     Acesse o painel da Anubis Pay e copie sua API Key e Secret.
+     ─────────────────────────────────────────────────────────────────── -->
+<script>
+  // ═══ CONFIGURAÇÃO ANUBIS PAY ════════════════════════════════
+  // ✅  Endpoint: POST https://api.anubispay.com.br/v1/transactions
+  // ✅  Auth:     Basic base64(PUBLIC_KEY:SECRET_KEY)
+  //
+  // ⚠️  Substitua PUBLIC_KEY e SECRET_KEY com suas credenciais reais.
+  // ⚠️  Em produção, faça as chamadas via BACKEND para não expor
+  //     suas chaves no navegador do cliente.
+
+  const ANUBIS_CONFIG = {
+    PUBLIC_KEY:  'pk_BPQ_xAnmz6U31OUv2v24IvOBxAF-x2Iffzy230Mm9I8jvQqA',
+    SECRET_KEY:  'sk_hD8s3TTXRIlk3dtfiBrH5vtR98dwoZBuNMoMQzXpEynqIZNy',
+
+    // Endpoint oficial Anubis Pay
+    CREATE_URL: 'https://api.anubispay.com.br/v1/transactions',
+    STATUS_URL: 'https://api.anubispay.com.br/v1/transactions', // + /{id}
+
+    // Webhook para receber confirmações de pagamento no seu backend
+    WEBHOOK_URL: 'https://seusite.com/webhook/anubis',
+  };
+
+  // Gera o header Authorization: Basic base64(PUBLIC_KEY:SECRET_KEY)
+  function getAuthHeader() {
+    return 'Basic ' + btoa(ANUBIS_CONFIG.PUBLIC_KEY + ':' + ANUBIS_CONFIG.SECRET_KEY);
+  }
+
+  // Estado da aplicação
+  let currentPlan = { nome: 'Padrão', preco: 79 };
+  let currentTab = 'pix';
+  let pixOrderId = null;
+  let pixPollingInterval = null;
+
+  // ─── NAVEGAÇÃO & HEADER ─────────────────────────────────────────
+  window.addEventListener('scroll', () => {
+    const h = document.getElementById('header');
+    h.style.padding = window.scrollY > 60 ? '12px 40px' : '18px 40px';
+  });
+
+  document.getElementById('hamburger').addEventListener('click', () => {
+    document.getElementById('nav').classList.toggle('open');
+  });
+
+  // ─── SELEÇÃO DE PLANO ────────────────────────────────────────────
+  function selectPlan(nome, preco) {
+    currentPlan = { nome, preco };
+    document.getElementById('plan-name-display').textContent = `Atestado ${nome}`;
+    document.getElementById('plan-price-display').textContent = `R$ ${preco}`;
+    document.getElementById('plan-total-display').textContent = `R$ ${preco}`;
+    document.getElementById('checkout').scrollIntoView({ behavior: 'smooth' });
+  }
+
+  // ─── VALIDAÇÃO ───────────────────────────────────────────────────
+  function validateForm() {
+    const fields = ['f-nome', 'f-cpf', 'f-email', 'f-telefone', 'f-dias', 'f-data', 'f-sintomas'];
+    for (const id of fields) {
+      if (!document.getElementById(id).value.trim()) {
+        showToast('error', '⚠️ Preencha todos os campos obrigatórios.');
+        document.getElementById(id).focus();
+        return false;
+      }
+    }
+    return true;
+  }
+
+  function getFormData() {
+    return {
+      nome:     document.getElementById('f-nome').value.trim(),
+      cpf:      document.getElementById('f-cpf').value.replace(/\D/g, ''),
+      email:    document.getElementById('f-email').value.trim(),
+      telefone: document.getElementById('f-telefone').value.replace(/\D/g, ''),
+      dias:     document.getElementById('f-dias').value,
+      data:     document.getElementById('f-data').value,
+      sintomas: document.getElementById('f-sintomas').value.trim(),
+    };
+  }
+
+  // ─── CHECKOUT PRINCIPAL ──────────────────────────────────────────
+  async function handleCheckout() {
+    if (!validateForm()) return;
+    const form = getFormData();
+    setLoading(true);
+    try {
+      await initPixPayment(form);
+    } catch (err) {
+      console.error('Erro Anubis Pay:', err);
+      showToast('error', '❌ Erro ao processar pagamento. Tente novamente.');
+      setLoading(false);
+    }
+  }
+
+  // ─── PIX — ANUBIS PAY ────────────────────────────────────────
+  /**
+   * Cria transação PIX via Anubis Pay.
+   *
+   * POST https://api.anubispay.com.br/v1/transactions
+   * Authorization: Basic base64(PUBLIC_KEY:SECRET_KEY)
+   *
+   * Ajuste os campos do payload conforme a documentação que a Anubis Pay
+   * enviou para você no onboarding.
+   */
+  async function initPixPayment(form) {
+    // Formato Anubis Pay (similar Pagar.me v5)
+    const valorCentavos = currentPlan.preco * 100;
+    const payload = {
+      amount: valorCentavos,
+      paymentMethod: 'pix',
+      pix: {
+        expiresInDays: 1,
+      },
+      items: [
+        {
+          title: `Atestado Médico ${currentPlan.nome}`,
+          unitPrice: valorCentavos,
+          quantity: 1,
+          tangible: false,
+        },
+      ],
+      customer: {
+        name: form.nome,
+        email: form.email,
+        document: {
+          number: form.cpf,        // CPF sem máscara
+          type: 'cpf',
+        },
+        phone: form.telefone,      // somente dígitos
+      },
+      postbackUrl: ANUBIS_CONFIG.WEBHOOK_URL,
+      metadata: JSON.stringify({
+        plano: String(currentPlan.nome),
+        dias_afastamento: String(form.dias),
+        data_inicio: String(form.data),
+        sintomas: String(form.sintomas),
+      }),
+    };
+
+    // ── Debug: mostra o payload no console ──────────────────────
+    console.log('📤 Anubis Pay PIX payload:', JSON.stringify(payload, null, 2));
+    console.log('🔑 Auth header:', getAuthHeader());
+
+    let response;
+    try {
+      response = await fetch(ANUBIS_CONFIG.CREATE_URL, {
+        method: 'POST',
+        headers: {
+          'Content-Type':  'application/json',
+          'Authorization': getAuthHeader(),
+        },
+        body: JSON.stringify(payload),
+      });
+    } catch (networkErr) {
+      // Erro de rede ou CORS — a API bloqueou chamada do browser
+      console.error('❌ Erro de rede/CORS:', networkErr);
+      showErrorBox(`Erro de conexão com Anubis Pay.\n\nCausa provável: CORS — a API não aceita chamadas diretas do navegador.\n\nSolução: use um backend proxy (veja orientações no código).\n\nDetalhe: ${networkErr.message}`);
+      setLoading(false);
+      return;
+    }
+
+    // ── Log da resposta bruta ────────────────────────────────────
+    const rawText = await response.text();
+    console.log('📥 Anubis Pay resposta status:', response.status);
+    console.log('📥 Anubis Pay resposta body:', rawText);
+
+    if (!response.ok) {
+      let errMsg = rawText;
+      try { const j = JSON.parse(rawText); errMsg = j.message || j.error || j.detail || rawText; } catch(e){}
+      showErrorBox(`Erro HTTP ${response.status} da Anubis Pay:\n\n${errMsg}`);
+      setLoading(false);
+      return;
+    }
+
+    let data;
+    try { data = JSON.parse(rawText); } catch(e) {
+      showErrorBox('Anubis Pay retornou resposta inválida (não é JSON).\n\n' + rawText.slice(0, 300));
+      setLoading(false);
+      return;
+    }
+
+    console.log('✅ Anubis Pay data:', data);
+
+    // ── Extraia os campos do retorno ─────────────────────────────
+    pixOrderId    = data.id            || data.transaction_id || data.order_id    || data.uuid;
+    const pixCode = data.pix?.qrcode   || data.pix?.qr_code    || data.pix_code    
+                 || data.qr_code       || data.copy_paste      || data.brcode      
+                 || data.emv           || '';
+    const qrImage = data.pix?.qrcode_image || data.pix?.qr_code_url || data.qr_code_url 
+                 || data.pix_image     || data.qr_image        || null;
+
+    if (!pixCode) {
+      // Mostra o retorno completo para debug
+      showErrorBox('PIX gerado, mas não encontrei o código no retorno.\n\nRetorno da Anubis Pay:\n' + JSON.stringify(data, null, 2));
+      setLoading(false);
+      return;
+    }
+
+    showPixQR(pixCode, qrImage);
+    setLoading(false);
+    startPixPolling(form.email);
+  }
+
+  function showPixQR(code, imageUrl) {
+    document.getElementById('pix-box-idle').style.display = 'none';
+    const qrBox = document.getElementById('pix-box-qr');
+    qrBox.style.display = 'block';
+    document.getElementById('pix-code').value = code;
+
+    const placeholder = document.getElementById('qr-img');
+    if (placeholder) {
+      const img = document.createElement('img');
+      img.id = 'qr-img';
+      img.alt = 'QR Code PIX';
+      img.style.cssText = 'width:220px;height:220px;object-fit:contain;border-radius:10px;margin:0 auto 14px;display:block;background:#fff;padding:8px';
+      placeholder.parentNode.replaceChild(img, placeholder);
+
+      if (imageUrl) {
+        img.src = imageUrl;
+      } else if (code && window.QRCode) {
+        // Gera o QR Code localmente a partir do código copia-e-cola
+        QRCode.toDataURL(code, { width: 440, margin: 1, errorCorrectionLevel: 'M' }, (err, url) => {
+          if (!err && url) {
+            img.src = url;
+          } else {
+            console.error('Erro ao gerar QR Code:', err);
+          }
+        });
+      }
+    }
+    document.getElementById('btn-submit').style.display = 'none';
+  }
+
+  function startPixPolling(email) {
+    let attempts = 0;
+    const maxAttempts = 72; // ~6 minutos
+    pixPollingInterval = setInterval(async () => {
+      attempts++;
+      if (attempts > maxAttempts) {
+        clearInterval(pixPollingInterval);
+        document.getElementById('pix-status').textContent = '⏰ PIX expirado. Recarregue a página para tentar novamente.';
+        return;
+      }
+      try {
+        const status = await checkPixStatus(pixOrderId);
+        // Ajuste os valores de status conforme a Anubis Pay retorna
+        if (['paid', 'approved', 'PAID', 'APPROVED', 'completed', 'success'].includes(status)) {
+          clearInterval(pixPollingInterval);
+          showSuccess(email);
+        }
+      } catch (e) {
+        // silencioso — tenta novamente no próximo ciclo
+      }
+    }, 5000);
+  }
+
+  async function checkPixStatus(orderId) {
+    // GET /v1/payment-transaction/{id}
+    const response = await fetch(`${ANUBIS_CONFIG.STATUS_URL}/${orderId}`, {
+      headers: { 'Authorization': getAuthHeader() }
+    });
+    const data = await response.json();
+    // Ajuste a chave de status conforme o retorno real da Anubis Pay:
+    return data.status || data.payment_status || data.transaction_status;
+  }
+
+  function copyPix() {
+    const code = document.getElementById('pix-code').value;
+    navigator.clipboard.writeText(code).then(() => {
+      showToast('success', '✅ Código PIX copiado!');
+    });
+  }
+
+  // ─── CARTÃO — ANUBIS PAY ─────────────────────────────────────
+  /**
+   * Cria transação de cartão de crédito via Anubis Pay.
+  // (Pagamento via cartão removido — apenas PIX)
+
+  // ─── CAIXA DE ERRO DETALHADA ─────────────────────────────────────
+  function showErrorBox(msg) {
+    // Remove caixa anterior se existir
+    const prev = document.getElementById('debug-error-box');
+    if (prev) prev.remove();
+
+    const box = document.createElement('div');
+    box.id = 'debug-error-box';
+    box.style.cssText = `
+      margin-top: 16px;
+      background: #fff5f5;
+      border: 1.5px solid #fca5a5;
+      border-radius: 10px;
+      padding: 16px;
+      font-size: .82rem;
+      color: #991b1b;
+      white-space: pre-wrap;
+      word-break: break-all;
+      line-height: 1.5;
+    `;
+    box.innerHTML = '<strong style="display:block;margin-bottom:6px">❌ Erro ao gerar PIX:</strong>' + msg.replace(/</g,'&lt;');
+    document.getElementById('panel-pix').appendChild(box);
+    document.getElementById('btn-submit').style.display = 'flex';
+  }
+
+  // ─── SUCESSO ─────────────────────────────────────────────────────
+  function showSuccess(email) {
+    document.getElementById('checkout-form').style.display = 'none';
+    const s = document.getElementById('success-screen');
+    s.style.display = 'block';
+    document.getElementById('success-email').textContent = email;
+    showToast('success', '🎉 Pagamento aprovado!');
+  }
+
+  function resetForm() {
+    document.getElementById('checkout-form').style.display = 'block';
+    document.getElementById('success-screen').style.display = 'none';
+    document.getElementById('pix-box-idle').style.display = 'block';
+    document.getElementById('pix-box-qr').style.display = 'none';
+    document.getElementById('btn-submit').style.display = 'flex';
+    document.getElementById('panel-pix').classList.add('active');
+    pixOrderId = null;
+    if (pixPollingInterval) clearInterval(pixPollingInterval);
+  }
+
+  // ─── UI HELPERS ──────────────────────────────────────────────────
+  function setLoading(on) {
+    const btn  = document.getElementById('btn-submit');
+    const txt  = document.getElementById('btn-text');
+    const spin = document.getElementById('btn-spin');
+    btn.disabled = on;
+    txt.textContent = on ? 'Processando...' : '🔒 Finalizar Pedido';
+    spin.style.display = on ? 'block' : 'none';
+  }
+
+  function showToast(type, msg) {
+    const t = document.getElementById('toast');
+    t.className = `toast ${type}`;
+    document.getElementById('toast-icon').textContent = type === 'success' ? '✅' : '❌';
+    document.getElementById('toast-msg').textContent = msg;
+    t.classList.add('show');
+    setTimeout(() => t.classList.remove('show'), 3500);
+  }
+
+  // ─── FAQ ──────────────────────────────────────────────────────────
+  function toggleFaq(btn) {
+    btn.closest('.faq-item').classList.toggle('open');
+  }
+
+  // ─── MÁSCARAS ────────────────────────────────────────────────────
+  document.getElementById('f-cpf').addEventListener('input', function () {
+    let v = this.value.replace(/\D/g, '').slice(0, 11);
+    v = v.replace(/(\d{3})(\d)/, '$1.$2')
+         .replace(/(\d{3})\.(\d{3})(\d)/, '$1.$2.$3')
+         .replace(/(\d{3})\.(\d{3})\.(\d{3})(\d)/, '$1.$2.$3-$4');
+    this.value = v;
+  });
+  document.getElementById('f-telefone').addEventListener('input', function () {
+    let v = this.value.replace(/\D/g, '').slice(0, 11);
+    v = v.replace(/(\d{2})(\d)/, '($1) $2')
+         .replace(/(\d{5})(\d)/, '$1-$2');
+    this.value = v;
+  });
+
+  // ─── DATA MÍNIMA HOJE ─────────────────────────────────────────────
+  const today = new Date().toISOString().split('T')[0];
+  document.getElementById('f-data').min   = today;
+  document.getElementById('f-data').value = today;
+</script>
+
+<!-- ─── BOTÃO FLUTUANTE DE SUPORTE (WhatsApp) ──────────────────────── -->
+<a href="https://wa.me/5515996343471?text=Ol%C3%A1!%20Preciso%20de%20ajuda%20com%20o%20atestado%20m%C3%A9dico."
+   class="support-fab"
+   target="_blank"
+   rel="noopener"
+   aria-label="Falar com o suporte no WhatsApp">
+  <span class="support-tooltip">Precisa de ajuda? Fale conosco</span>
+  <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+    <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
+  </svg>
+</a>
+
+</body>
+</html>
