@@ -206,6 +206,13 @@
       display: flex; justify-content: center; align-items: center;
       animation: fadeUp .8s .3s var(--ease) both;
     }
+    .hero-doctor {
+      width: 100%; max-width: 420px;
+      border-radius: 24px;
+      object-fit: cover;
+      box-shadow: 0 40px 80px rgba(0,0,0,.45), 0 0 0 1px rgba(0,180,160,.25);
+      display: block;
+    }
     .hero-card {
       background: rgba(255,255,255,.06);
       border: 1px solid rgba(255,255,255,.1);
@@ -600,6 +607,31 @@
     .success-screen h3 { font-family: var(--ff-head); font-size: 1.6rem; margin-bottom: 10px; }
     .success-screen p { color: var(--gray); margin-bottom: 24px; }
 
+    /* ─── DEPOIMENTOS ─────────────────────────────────────────────── */
+    #depoimentos { background: var(--cream); }
+    .testimonials-grid {
+      max-width: 1200px; margin: 0 auto;
+      display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px;
+    }
+    .testimonial-card {
+      background: var(--white);
+      border: 1px solid var(--gray2);
+      border-radius: var(--r);
+      padding: 24px;
+      transition: transform .25s, box-shadow .25s;
+    }
+    .testimonial-card:hover { transform: translateY(-4px); box-shadow: var(--shadow); }
+    .t-stars { color: var(--gold); font-size: .95rem; letter-spacing: 3px; margin-bottom: 12px; }
+    .t-text {
+      font-size: .9rem; color: var(--navy);
+      line-height: 1.65; margin-bottom: 16px;
+      font-style: italic;
+    }
+    .t-author strong { display: block; font-size: .88rem; color: var(--navy); font-style: normal; }
+    .t-author span { font-size: .78rem; color: var(--gray); }
+    @media (max-width: 1024px) { .testimonials-grid { grid-template-columns: repeat(2, 1fr); } }
+    @media (max-width: 600px)  { .testimonials-grid { grid-template-columns: 1fr; } }
+
     /* ─── FAQ ──────────────────────────────────────────────────────── */
     #faq { background: var(--white); }
     .faq-wrap { max-width: 720px; margin: 0 auto; }
@@ -720,6 +752,200 @@
       display: none;
     }
     @keyframes spin { to { transform: rotate(360deg); } }
+
+    /* ═══════════════════════════════════════════════════════════════════
+       ✨ PREMIUM POLISH v7 — gradientes suaves, sombras refinadas,
+       melhor experiência mobile. Sobrescreve apenas estilos visuais.
+       ═══════════════════════════════════════════════════════════════════ */
+    :root {
+      --shadow-soft:   0 4px 16px rgba(10,22,40,.06), 0 12px 40px rgba(10,22,40,.08);
+      --shadow-elev:   0 8px 24px rgba(10,22,40,.10), 0 24px 60px rgba(10,22,40,.14);
+      --grad-teal:     linear-gradient(135deg, #00b4a0 0%, #00d4bc 100%);
+      --grad-navy:     linear-gradient(160deg, #0a1628 0%, #122040 60%, #1a2d5a 100%);
+      --grad-cream:    linear-gradient(180deg, #f7f4ef 0%, #ffffff 100%);
+    }
+
+    body { background: var(--grad-cream); }
+
+    /* Hero: gradiente mais profundo + brilhos */
+    .hero { background: var(--grad-navy); }
+    .hero-bg {
+      background:
+        radial-gradient(ellipse 60% 50% at 75% 40%, rgba(0,212,188,.18) 0%, transparent 65%),
+        radial-gradient(ellipse 50% 50% at 15% 85%, rgba(0,180,160,.12) 0%, transparent 65%),
+        radial-gradient(ellipse 80% 30% at 50% 0%, rgba(26,45,90,.6) 0%, transparent 70%);
+    }
+
+    /* Botões principais com gradiente e elevação */
+    .btn-primary,
+    .btn-submit,
+    .btn-header {
+      background: var(--grad-teal);
+      box-shadow: 0 6px 20px rgba(0,180,160,.28);
+      letter-spacing: .01em;
+    }
+    .btn-primary:hover,
+    .btn-submit:hover,
+    .btn-header:hover {
+      background: var(--grad-teal);
+      filter: brightness(1.08);
+      box-shadow: 0 12px 32px rgba(0,180,160,.42);
+      transform: translateY(-2px);
+    }
+
+    /* Cards com sombra refinada */
+    .checkout-form,
+    .success-screen { box-shadow: var(--shadow-soft); }
+    .checkout-form:hover { box-shadow: var(--shadow-elev); }
+
+    .plan-card {
+      background: rgba(255,255,255,.04);
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+      transition: transform .3s var(--ease), box-shadow .3s, border-color .3s;
+    }
+    .plan-card:hover {
+      transform: translateY(-6px);
+      border-color: rgba(0,212,188,.35);
+      box-shadow: 0 18px 50px rgba(0,180,160,.18);
+    }
+    .plan-card.featured {
+      background: var(--grad-teal);
+      box-shadow: 0 20px 60px rgba(0,180,160,.45);
+      transform: translateY(-4px);
+    }
+    .plan-card.featured:hover { transform: translateY(-10px); }
+
+    /* Order summary com gradiente */
+    .order-summary {
+      background: var(--grad-navy);
+      box-shadow: var(--shadow-elev);
+    }
+
+    /* PIX box mais elegante */
+    .pix-box {
+      background: linear-gradient(180deg, #f0fdfb 0%, #ffffff 100%);
+      box-shadow: inset 0 0 0 1px rgba(0,180,160,.15);
+    }
+
+    /* Inputs mais suaves */
+    .form-group input,
+    .form-group select,
+    .form-group textarea {
+      background: #fafbfc;
+      border-color: #e5e9f0;
+      transition: all .25s ease;
+    }
+    .form-group input:hover,
+    .form-group select:hover,
+    .form-group textarea:hover { background: #fff; border-color: #c8d0dc; }
+    .form-group input:focus,
+    .form-group select:focus,
+    .form-group textarea:focus {
+      background: #fff;
+      box-shadow: 0 0 0 4px rgba(0,180,160,.14);
+    }
+
+    /* FAQ items com hover */
+    .faq-q { transition: color .2s; padding-right: 8px; }
+    .faq-q:hover { color: var(--teal); }
+
+    /* Modal mais polido */
+    .modal {
+      box-shadow: 0 30px 80px rgba(10,22,40,.35);
+      border: 1px solid rgba(255,255,255,.6);
+    }
+    .modal-overlay { background: rgba(10,22,40,.55); }
+
+    /* Support FAB com glow */
+    .support-fab { box-shadow: 0 10px 30px rgba(37,211,102,.45); }
+
+    /* ─── 📱 MELHORIAS MOBILE ────────────────────────────────────────── */
+    @media (max-width: 768px) {
+      section { padding: 64px 20px; }
+      .section-head { margin-bottom: 40px; }
+      .section-head h2 { font-size: 1.85rem; line-height: 1.2; }
+      .section-sub { font-size: .95rem; }
+
+      .hero { padding: 110px 20px 64px; min-height: auto; }
+      .hero-inner { gap: 32px; }
+      .hero h1 { font-size: 2.15rem; line-height: 1.18; }
+      .hero p { font-size: 1.02rem; max-width: 100%; }
+      .hero-actions { flex-direction: column; gap: 12px; }
+      .hero-actions .btn-primary,
+      .hero-actions .btn-ghost {
+        width: 100%; justify-content: center;
+        padding: 16px 24px; font-size: 1rem;
+      }
+      .hero-stats {
+        gap: 20px; padding-top: 28px; margin-top: 28px;
+        border-top: 1px solid rgba(255,255,255,.08);
+      }
+
+      /* Botões maiores e mais clicáveis */
+      .btn-primary, .btn-submit, .btn-plan, .btn-ghost {
+        min-height: 52px;
+        border-radius: 12px;
+      }
+
+      /* Planos com mais respiro */
+      .plan-card { padding: 32px 24px; border-radius: 20px; }
+      .plan-card.featured { transform: none; }
+      .plan-card.featured:hover { transform: translateY(-4px); }
+
+      /* Checkout */
+      .order-summary,
+      .checkout-form,
+      .success-screen {
+        padding: 24px 20px;
+        border-radius: 18px;
+      }
+      .order-summary h3,
+      .checkout-form h3 { font-size: 1.2rem; margin-bottom: 18px; }
+
+      /* FAQ mais clicável */
+      .faq-q { padding: 22px 0; font-size: 1rem; min-height: 56px; }
+      .faq-q .chevron { width: 32px; height: 32px; }
+
+      /* Modal ocupa quase tudo */
+      .modal {
+        padding: 28px 22px;
+        border-radius: 22px 22px 16px 16px;
+        width: calc(100% - 24px);
+        max-height: 92vh; overflow-y: auto;
+      }
+
+      /* Header mais compacto */
+      header { padding: 12px 16px; }
+      .logo-text { font-size: 1.05rem; }
+      .logo-icon { width: 34px; height: 34px; }
+
+      /* Toast no topo no mobile (longe do FAB) */
+      .toast {
+        bottom: auto; top: 16px;
+        left: 16px; right: 16px;
+        transform: translateY(-100px);
+      }
+      .toast.show { transform: translateY(0); }
+
+      /* PIX QR maior */
+      .qr-placeholder { width: 200px; height: 200px; }
+      #pix-code { font-size: 13px !important; }
+    }
+
+    @media (max-width: 480px) {
+      .hero h1 { font-size: 1.85rem; }
+      .hero p { font-size: .98rem; }
+      .section-head h2 { font-size: 1.55rem; }
+      .plan-price { font-size: 2.2rem; }
+      .order-total strong { font-size: 1.35rem; }
+      .support-fab { width: 56px; height: 56px; bottom: 14px; right: 14px; }
+    }
+
+    /* Acessibilidade: reduz movimento se preferido */
+    @media (prefers-reduced-motion: reduce) {
+      * { animation-duration: .01ms !important; transition-duration: .01ms !important; }
+    }
 
     /* ─── RESPONSIVE ────────────────────────────────────────────────── */
     @media (max-width: 1024px) {
@@ -869,43 +1095,7 @@
       </div>
     </div>
     <div class="hero-card-wrap">
-      <div class="hero-card">
-        <div class="hero-card-title"><span class="icon">📋</span> Como funciona</div>
-        <ul class="step-list">
-          <li>
-            <div class="step-num">1</div>
-            <div class="step-info">
-              <strong>Preencha o formulário</strong>
-              <span>Informe seus dados e sintomas</span>
-            </div>
-          </li>
-          <li>
-            <div class="step-num">2</div>
-            <div class="step-info">
-              <strong>Realize o pagamento</strong>
-              <span>PIX ou cartão — rápido e seguro</span>
-            </div>
-          </li>
-          <li>
-            <div class="step-num">3</div>
-            <div class="step-info">
-              <strong>Consulta com médico</strong>
-              <span>Atendimento online imediato</span>
-            </div>
-          </li>
-          <li>
-            <div class="step-num">4</div>
-            <div class="step-info">
-              <strong>Receba o atestado</strong>
-              <span>PDF assinado no seu e-mail</span>
-            </div>
-          </li>
-        </ul>
-        <div class="hero-card-footer">
-          <span>🔒</span>
-          <span>Dados protegidos · LGPD Compliant · CFM aprovado</span>
-        </div>
-      </div>
+      <img src="medico.jpg" alt="Médico online" class="hero-doctor" />
     </div>
   </div>
 </section>
@@ -1090,11 +1280,7 @@
         <textarea id="f-sintomas" placeholder="Ex: Dor de cabeça forte, febre 38°C, corpo dolorido desde ontem..."></textarea>
       </div>
 
-      <h3 style="margin-top:8px">Forma de pagamento</h3>
-      <div class="payment-tabs">
-        <button class="pay-tab active" onclick="switchTab('pix', this)">⚡ PIX</button>
-        <button class="pay-tab" onclick="switchTab('cartao', this)">💳 Cartão de Crédito</button>
-      </div>
+      <h3 style="margin-top:8px">Pagamento via PIX</h3>
 
       <!-- PIX PANEL -->
       <div class="pay-panel active" id="panel-pix">
@@ -1114,42 +1300,6 @@
         </div>
       </div>
 
-      <!-- CARTÃO PANEL -->
-      <div class="pay-panel" id="panel-cartao">
-        <div class="card-icons">
-          <div class="card-icon">VISA</div>
-          <div class="card-icon">MASTER</div>
-          <div class="card-icon">ELO</div>
-          <div class="card-icon">AMEX</div>
-        </div>
-        <div class="form-group">
-          <label>Número do cartão *</label>
-          <input type="text" id="f-card-num" placeholder="0000 0000 0000 0000" maxlength="19" />
-        </div>
-        <div class="form-row">
-          <div class="form-group">
-            <label>Validade *</label>
-            <input type="text" id="f-card-exp" placeholder="MM/AA" maxlength="5" />
-          </div>
-          <div class="form-group">
-            <label>CVV *</label>
-            <input type="text" id="f-card-cvv" placeholder="123" maxlength="4" />
-          </div>
-        </div>
-        <div class="form-group">
-          <label>Nome no cartão *</label>
-          <input type="text" id="f-card-name" placeholder="JOAO SILVA" />
-        </div>
-        <div class="form-group">
-          <label>Parcelas</label>
-          <select id="f-parcelas">
-            <option value="1">1x sem juros</option>
-            <option value="2">2x sem juros</option>
-            <option value="3">3x sem juros</option>
-          </select>
-        </div>
-      </div>
-
       <button class="btn-submit" id="btn-submit" onclick="handleCheckout()">
         <span id="btn-text">🔒 Finalizar Pedido</span>
         <div class="spin" id="btn-spin"></div>
@@ -1165,6 +1315,48 @@
       <button class="btn-primary" style="margin:0 auto" onclick="resetForm()">Novo pedido</button>
     </div>
 
+  </div>
+</section>
+
+<!-- ─── DEPOIMENTOS ──────────────────────────────────────────────────── -->
+<section id="depoimentos">
+  <div class="section-head">
+    <div class="section-tag">Depoimentos reais</div>
+    <h2 class="section-title">Mais de 50.000 pacientes atendidos</h2>
+  </div>
+  <div class="testimonials-grid">
+    <div class="testimonial-card">
+      <div class="t-stars">★★★★★</div>
+      <p class="t-text">"Recebi em menos de 10 minutos. Salvou meu dia!"</p>
+      <div class="t-author">
+        <strong>Mariana R.</strong>
+        <span>São Paulo, SP</span>
+      </div>
+    </div>
+    <div class="testimonial-card">
+      <div class="t-stars">★★★★★</div>
+      <p class="t-text">"Processo super simples e atendimento humano. Recomendo!"</p>
+      <div class="t-author">
+        <strong>Carlos E.</strong>
+        <span>Rio de Janeiro, RJ</span>
+      </div>
+    </div>
+    <div class="testimonial-card">
+      <div class="t-stars">★★★★★</div>
+      <p class="t-text">"Paguei o PIX e o atestado caiu no e-mail rapidinho."</p>
+      <div class="t-author">
+        <strong>Juliana M.</strong>
+        <span>Belo Horizonte, MG</span>
+      </div>
+    </div>
+    <div class="testimonial-card">
+      <div class="t-stars">★★★★★</div>
+      <p class="t-text">"Muito mais prático que ir presencialmente. Top!"</p>
+      <div class="t-author">
+        <strong>Rafael T.</strong>
+        <span>Curitiba, PR</span>
+      </div>
+    </div>
   </div>
 </section>
 
@@ -1192,7 +1384,7 @@
       <button class="faq-q" onclick="toggleFaq(this)">
         Quais formas de pagamento são aceitas? <span class="chevron">▼</span>
       </button>
-      <div class="faq-a">Aceitamos PIX (confirmação instantânea) e cartão de crédito (Visa, Mastercard, Elo, Amex), processados com segurança pela Anubis Pay.</div>
+      <div class="faq-a">Aceitamos pagamento via PIX (confirmação instantânea), processado com segurança pela Anubis Pay.</div>
     </div>
     <div class="faq-item">
       <button class="faq-q" onclick="toggleFaq(this)">
@@ -1307,15 +1499,6 @@
     document.getElementById('checkout').scrollIntoView({ behavior: 'smooth' });
   }
 
-  // ─── ABAS DE PAGAMENTO ───────────────────────────────────────────
-  function switchTab(tab, el) {
-    currentTab = tab;
-    document.querySelectorAll('.pay-tab').forEach(t => t.classList.remove('active'));
-    document.querySelectorAll('.pay-panel').forEach(p => p.classList.remove('active'));
-    el.classList.add('active');
-    document.getElementById(`panel-${tab}`).classList.add('active');
-  }
-
   // ─── VALIDAÇÃO ───────────────────────────────────────────────────
   function validateForm() {
     const fields = ['f-nome', 'f-cpf', 'f-email', 'f-telefone', 'f-dias', 'f-data', 'f-sintomas'];
@@ -1324,16 +1507,6 @@
         showToast('error', '⚠️ Preencha todos os campos obrigatórios.');
         document.getElementById(id).focus();
         return false;
-      }
-    }
-    if (currentTab === 'cartao') {
-      const cardFields = ['f-card-num', 'f-card-exp', 'f-card-cvv', 'f-card-name'];
-      for (const id of cardFields) {
-        if (!document.getElementById(id).value.trim()) {
-          showToast('error', '⚠️ Preencha os dados do cartão.');
-          document.getElementById(id).focus();
-          return false;
-        }
       }
     }
     return true;
@@ -1357,11 +1530,7 @@
     const form = getFormData();
     setLoading(true);
     try {
-      if (currentTab === 'pix') {
-        await initPixPayment(form);
-      } else {
-        await processCardPayment(form);
-      }
+      await initPixPayment(form);
     } catch (err) {
       console.error('Erro Anubis Pay:', err);
       showToast('error', '❌ Erro ao processar pagamento. Tente novamente.');
@@ -1549,75 +1718,7 @@
   }
 
   // ─── CARTÃO — ANUBIS PAY ─────────────────────────────────────
-  /**
-   * Cria transação de cartão de crédito via Anubis Pay.
-   *
-   * POST https://api.anubispay.com.br/v1/transactions
-   * Authorization: Basic base64(PUBLIC_KEY:SECRET_KEY)
-   *
-   * ⚠️  SEGURANÇA: O ideal é usar o SDK/tokenizador da Anubis Pay
-   *     para transformar os dados do cartão em um token antes de enviar.
-   *     Consulte a documentação deles sobre "card tokenization".
-   */
-  async function processCardPayment(form) {
-    const payload = {
-      // ── Dados da transação ──────────────────────────────────────
-      amount:         currentPlan.preco * 100,
-      paymentMethod: 'credit_card',
-      description:    `Atestado Médico ${currentPlan.nome}`,
-      installments:   parseInt(document.getElementById('f-parcelas').value),
-
-      // ── Dados do cliente ─────────────────────────────────────────
-      customer: {
-        name:     form.nome,
-        document: form.cpf,
-        email:    form.email,
-        phone:    form.telefone,
-      },
-
-      // ── Dados do cartão ─────────────────────────────────────────
-      card: {
-        number:       document.getElementById('f-card-num').value.replace(/\s/g, ''),
-        expiry_month: document.getElementById('f-card-exp').value.split('/')[0],
-        expiry_year:  '20' + document.getElementById('f-card-exp').value.split('/')[1],
-        cvv:          document.getElementById('f-card-cvv').value,
-        holder_name:  document.getElementById('f-card-name').value.toUpperCase(),
-      },
-
-      // ── Webhook de confirmação ──────────────────────────────────
-      postbackUrl: ANUBIS_CONFIG.WEBHOOK_URL,
-
-      metadata: JSON.stringify({
-        plano: String(currentPlan.nome),
-        dias_afastamento: String(form.dias),
-      }),
-    };
-
-    const response = await fetch(ANUBIS_CONFIG.CREATE_URL, {
-      method: 'POST',
-      headers: {
-        'Content-Type':  'application/json',
-        'Authorization': getAuthHeader(),   // Basic base64(PUBLIC_KEY:SECRET_KEY)
-      },
-      body: JSON.stringify(payload),
-    });
-
-    if (!response.ok) {
-      const err = await response.json().catch(() => ({}));
-      throw new Error(err.message || err.error || `HTTP ${response.status}`);
-    }
-
-    const data = await response.json();
-    const status = data.status || data.payment_status || data.transaction_status;
-
-    if (['paid', 'approved', 'PAID', 'APPROVED', 'success'].includes(status)) {
-      setLoading(false);
-      showSuccess(form.email);
-    } else {
-      setLoading(false);
-      showToast('error', '❌ Pagamento recusado. Verifique os dados do cartão.');
-    }
-  }
+  // (Pagamento via cartão removido — apenas PIX)
 
   // ─── CAIXA DE ERRO DETALHADA ─────────────────────────────────────
   function showErrorBox(msg) {
@@ -1660,9 +1761,6 @@
     document.getElementById('pix-box-qr').style.display = 'none';
     document.getElementById('btn-submit').style.display = 'flex';
     document.getElementById('panel-pix').classList.add('active');
-    document.getElementById('panel-cartao').classList.remove('active');
-    document.querySelectorAll('.pay-tab')[0].classList.add('active');
-    document.querySelectorAll('.pay-tab')[1].classList.remove('active');
     pixOrderId = null;
     if (pixPollingInterval) clearInterval(pixPollingInterval);
   }
@@ -1703,18 +1801,6 @@
     let v = this.value.replace(/\D/g, '').slice(0, 11);
     v = v.replace(/(\d{2})(\d)/, '($1) $2')
          .replace(/(\d{5})(\d)/, '$1-$2');
-    this.value = v;
-  });
-  const cardNum = document.getElementById('f-card-num');
-  if (cardNum) cardNum.addEventListener('input', function () {
-    let v = this.value.replace(/\D/g, '').slice(0, 16);
-    v = v.replace(/(\d{4})(?=\d)/g, '$1 ').trim();
-    this.value = v;
-  });
-  const cardExp = document.getElementById('f-card-exp');
-  if (cardExp) cardExp.addEventListener('input', function () {
-    let v = this.value.replace(/\D/g, '').slice(0, 4);
-    if (v.length > 2) v = v.slice(0, 2) + '/' + v.slice(2);
     this.value = v;
   });
 
